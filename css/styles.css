@@ -173,6 +173,10 @@ strong {
   max-width: 860px;
 }
 
+.conteneur--large {
+  max-width: 1340px;
+}
+
 .section {
   padding-block: var(--section-y);
 }
@@ -798,75 +802,179 @@ strong {
   content: " →";
 }
 
-/* Liste de motifs de consultation */
-.motifs {
+/* Motifs de consultation regroupés par domaine de vie */
+.domaines {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 0.75rem;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
 
-.motifs li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-  padding: 0.85rem 1.1rem;
-  background: var(--blanc);
+/* deux colonnes dès qu'une carte peut accueillir ses étiquettes sans casser */
+@media (min-width: 760px) {
+  .domaines {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.domaine {
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2rem);
+  background: var(--blanc-casse);
   border: 1px solid var(--vert-clair);
-  border-radius: var(--radius);
-  font-size: 0.96rem;
-  line-height: 1.45;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.domaine:hover {
+  transform: translateY(-3px);
+  border-color: var(--vert-taupe);
+  box-shadow: var(--ombre);
+}
+
+.domaine__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.1rem;
+  border-radius: 50%;
+  background: var(--vert-clair);
+  color: var(--vert-profond);
+}
+
+.domaine__icone svg {
+  width: 21px;
+  height: 21px;
+}
+
+.domaine__titre {
+  font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+  margin-bottom: 1rem;
+}
+
+.domaine__liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 
-.section--beige .motifs li {
+.domaine__liste li {
+  margin: 0;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--vert-clair);
+  border-radius: 999px;
+  background: var(--beige-sable);
+  color: var(--texte-doux);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+/* Conclusion : ce que ces difficultés peuvent provoquer */
+.consequences {
+  padding-top: clamp(2rem, 4vw, 2.75rem);
+  border-top: 1px solid var(--vert-clair);
+  text-align: center;
+}
+
+.consequences__intro {
+  max-width: none;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-titre);
+  font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  color: var(--vert-profond);
+}
+
+.consequences__liste {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.consequences__liste li {
+  margin: 0;
+  padding: 0.5rem 1.15rem;
+  border-radius: 999px;
+  background: var(--vert-clair);
+  color: var(--vert-profond);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Diplômes & formations : logos des organismes */
+.formations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: clamp(1.4rem, 3vw, 2rem);
   background: var(--blanc-casse);
+  border: 1px solid var(--vert-clair);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
 }
 
-.motifs li::before {
-  content: "";
-  flex-shrink: 0;
-  width: 7px;
-  height: 7px;
-  margin-top: 0.55em;
-  border-radius: 50%;
-  background: var(--vert-taupe);
+.formation:hover {
+  transform: translateY(-3px);
+  border-color: var(--vert-taupe);
+  box-shadow: var(--ombre);
 }
 
-/* Liste à puces sur deux colonnes */
-.liste-colonnes {
-  columns: 2;
-  column-gap: 2.5rem;
-  padding-left: 1.2em;
+/* cadre neutre : les logos ont des fonds très différents */
+.formation__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 1.35rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--blanc);
+  border-radius: var(--radius);
 }
 
-.liste-colonnes li {
-  break-inside: avoid;
+.formation__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-@media (max-width: 640px) {
-  .liste-colonnes {
-    columns: 1;
-  }
+.formation__titre {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  margin-bottom: 0.55rem;
+}
+
+.formation__texte {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.95rem;
+  color: var(--texte-doux);
 }
 
 /* Section d'approche détaillée */
 .approche {
   scroll-margin-top: 90px;
-}
-
-.approche__entete {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-.approche__entete h2 {
-  margin: 0;
 }
 
 .etiquette {
@@ -879,6 +987,30 @@ strong {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Les trois approches, côte à côte, texte complet visible d'emblée */
+.grille--approches {
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.carte--approche h2 {
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.55rem);
+  margin: 0 0 0.6em;
+}
+
+/* cartes de lecture, pas de survol qui laisserait croire à un lien */
+.carte--approche:hover {
+  transform: none;
+  box-shadow: var(--ombre);
+}
+
+/* en dessous de trois colonnes lisibles, on empile */
+@media (max-width: 900px) {
+  .grille--approches {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Encadré d'information */
@@ -921,106 +1053,7 @@ strong {
 }
 
 /* --------------------------------------------------------------------------
-   8. Tarifs
-   -------------------------------------------------------------------------- */
-
-/* Carte du tarif unique : montant sur fond vert, détail sur fond clair */
-.tarif-carte {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  align-items: stretch;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--ombre-forte);
-  overflow: hidden;
-}
-
-.tarif-carte__prix {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: clamp(2.5rem, 6vw, 3.5rem) 1.5rem;
-  background: linear-gradient(
-    155deg,
-    var(--vert-taupe) 0%,
-    var(--vert-profond) 85%
-  );
-  color: var(--blanc);
-  text-align: center;
-}
-
-.tarif-carte__montant {
-  font-family: var(--font-titre);
-  font-size: clamp(3rem, 2.2rem + 3.4vw, 4.25rem);
-  font-weight: 600;
-  line-height: 1;
-  margin: 0;
-  color: var(--blanc);
-}
-
-.tarif-carte__unite {
-  margin: 0;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--vert-clair);
-}
-
-.tarif-carte__detail {
-  padding: clamp(2rem, 5vw, 2.75rem);
-  background: var(--blanc-casse);
-}
-
-.tarif-carte__detail h2 {
-  font-size: clamp(1.4rem, 1.2rem + 0.9vw, 1.75rem);
-  margin-bottom: 0.6rem;
-}
-
-.tarif-carte__detail p {
-  color: var(--texte-doux);
-}
-
-/* Liste à coches vertes */
-.liste-coche {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0;
-}
-
-.liste-coche li {
-  position: relative;
-  padding-left: 1.9rem;
-  margin-bottom: 0.7rem;
-  font-size: 0.98rem;
-}
-
-.liste-coche li:last-child {
-  margin-bottom: 0;
-}
-
-.liste-coche li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.34em;
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 50%;
-  background: var(--vert-clair)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234F5A4A' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
-    center / 0.72rem no-repeat;
-}
-
-@media (max-width: 640px) {
-  .tarif-carte {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   9. Cabinet & contact
+   8. Cabinet & contact
    -------------------------------------------------------------------------- */
 
 .adresse {
@@ -1163,35 +1196,8 @@ strong {
   }
 }
 
-/* Horaires / infos pratiques */
-.infos-liste {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.infos-liste li {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem 1.5rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--vert-clair);
-  margin: 0;
-}
-
-.infos-liste li:last-child {
-  border-bottom: 0;
-}
-
-.infos-liste dt,
-.infos-liste__label {
-  font-weight: 600;
-  color: var(--vert-profond);
-}
-
 /* --------------------------------------------------------------------------
-   9 bis. Formulaire de contact
+   8 bis. Formulaire de contact
    -------------------------------------------------------------------------- */
 
 /* Panneau vert du formulaire, détaché du pied de page */
@@ -1316,7 +1322,7 @@ strong {
 }
 
 /* --------------------------------------------------------------------------
-   10. Pied de page
+   9. Pied de page
    -------------------------------------------------------------------------- */
 
 .site-footer {
@@ -1386,7 +1392,7 @@ strong {
 }
 
 /* --------------------------------------------------------------------------
-   11. Animations
+   10. Animations
    -------------------------------------------------------------------------- */
 
 .reveal {
@@ -1420,13 +1426,15 @@ strong {
 
   .btn:hover,
   .carte:hover,
+  .domaine:hover,
+  .formation:hover,
   .contact-item:hover {
     transform: none;
   }
 }
 
 /* --------------------------------------------------------------------------
-   12. Impression
+   11. Impression
    -------------------------------------------------------------------------- */
 
 @media print {

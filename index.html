@@ -39,7 +39,6 @@
     <nav class="nav" id="nav-principale" aria-label="Navigation principale">
       <a class="nav__lien is-active" href="index.html" aria-current="page">Accueil</a>
       <a class="nav__lien" href="approches.html">Mes approches</a>
-      <a class="nav__lien" href="tarifs.html">Tarifs</a>
       <a class="nav__lien" href="cabinet.html">Le cabinet</a>
       <a class="nav__lien" href="contact.html">Contact</a>
       <a class="btn btn--principal nav__cta" href="https://www.doctolib.fr/psychologue/annecy/alice-morieux" target="_blank" rel="noopener">Prendre rendez-vous</a>
@@ -84,104 +83,148 @@
     </div>
   </section>
 
-  <!-- ============ Pourquoi consulter ============ -->
+  <!-- ============ Diplômes & formations ============ -->
   <section class="section section--beige">
+    <div class="conteneur reveal">
+      <div class="section-titre section-titre--centre">
+        <span class="surtitre">Mon parcours</span>
+        <h2>Diplômes &amp; formations</h2>
+        <span class="filet"></span>
+        <p class="chapeau">Une formation initiale de psychologue clinicienne, complétée par des formations spécialisées.</p>
+      </div>
+
+      <!-- TODO : confirmer avec Alice les intitulés exacts et, si elle le souhaite, ajouter les années -->
+      <ul class="formations">
+        <li class="formation">
+          <span class="formation__logo">
+            <img src="assets/logo-epp.jpg" width="576" height="423" loading="lazy"
+                 alt="Logo de l'École de Psychologues Praticiens">
+          </span>
+          <h3 class="formation__titre">École de Psychologues Praticiens</h3>
+          <p class="formation__texte">Diplôme de psychologue clinicienne, conférant le titre de psychologue reconnu par l'État.</p>
+        </li>
+
+        <li class="formation">
+          <span class="formation__logo">
+            <img src="assets/logo-ifemdr.jpg" width="800" height="502" loading="lazy"
+                 alt="Logo de l'IFEMDR, Institut français d'EMDR">
+          </span>
+          <h3 class="formation__titre">Institut français d'EMDR</h3>
+          <p class="formation__texte">Formation à la thérapie EMDR, dédiée au traitement des psychotraumatismes.</p>
+        </li>
+
+        <li class="formation">
+          <span class="formation__logo">
+            <img src="assets/logo-double-helice.jpg" width="618" height="368" loading="lazy"
+                 alt="Logo de Double Hélice">
+          </span>
+          <h3 class="formation__titre">Double Hélice</h3>
+          <p class="formation__texte">Formation à l'Intégration du Cycle de Vie (ICV).</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ Pourquoi consulter ============ -->
+  <section class="section section--blanc">
     <div class="conteneur reveal">
       <div class="section-titre section-titre--centre">
         <span class="surtitre">Vous accompagner</span>
         <h2>Pourquoi consulter&nbsp;?</h2>
         <span class="filet"></span>
+        <p class="chapeau">Vos difficultés recouvrent une palette variée. Elles peuvent être en lien, par exemple, avec&nbsp;:</p>
       </div>
 
-      <p style="max-width:none">Vos difficultés recouvrent une palette variée et peuvent être en lien, par exemple, avec&nbsp;:</p>
-
-      <ul class="motifs">
-        <li>Le scolaire (apprentissages, intégration…)</li>
-        <li>Le travail (relationnel, licenciement…)</li>
-        <li>Le couple</li>
-        <li>La famille (parentalité, fratrie…)</li>
-        <li>Le rapport au corps</li>
-        <li>Le handicap</li>
-        <li>La sphère sociale</li>
-        <li>Une annonce douloureuse</li>
-        <li>Une rupture, une séparation</li>
-        <li>Un changement de vie</li>
-        <li>Une perte, un deuil</li>
-        <li>Un traumatisme</li>
-        <li>La maladie</li>
-        <li>La relation aux autres</li>
-        <li>L'estime de soi</li>
-        <li>La gestion des émotions</li>
-      </ul>
-
-      <div class="encadre">
-        <p>Elles peuvent être source notamment de fatigabilité, stress, anxiété, souffrance.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Aperçu des approches ============ -->
-  <section class="section section--blanc">
-    <div class="conteneur reveal">
-      <div class="section-titre section-titre--centre">
-        <span class="surtitre">Mes approches</span>
-        <h2>Un accompagnement sur mesure</h2>
-        <span class="filet"></span>
-        <p class="chapeau">Je m'appuie sur plusieurs approches complémentaires, choisies avec vous en fonction de votre problématique, de vos besoins et de vos objectifs.</p>
-      </div>
-
-      <div class="grille grille--3">
-        <article class="carte">
-          <span class="carte__numero" aria-hidden="true">01</span>
-          <h3>EMDR</h3>
-          <p>Une thérapie qui s'adresse à toute personne, de l'enfant en bas âge à l'adulte, souffrant de perturbations émotionnelles généralement liées à des traumatismes psychologiques.</p>
-          <a class="carte__lien" href="approches.html#emdr">En savoir plus</a>
+      <div class="domaines">
+        <article class="domaine">
+          <span class="domaine__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </span>
+          <h3 class="domaine__titre">Vie scolaire &amp; professionnelle</h3>
+          <ul class="domaine__liste">
+            <li>Apprentissages</li>
+            <li>Intégration</li>
+            <li>Relationnel au travail</li>
+            <li>Licenciement</li>
+          </ul>
         </article>
 
-        <article class="carte">
-          <span class="carte__numero" aria-hidden="true">02</span>
-          <h3>ICV</h3>
-          <p>L'Intégration du Cycle de Vie propose de traverser un à un les souvenirs pour que le système corps-esprit intègre les événements et remette les choses à leur juste place.</p>
-          <a class="carte__lien" href="approches.html#icv">En savoir plus</a>
+        <article class="domaine">
+          <span class="domaine__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          <h3 class="domaine__titre">Vie relationnelle &amp; familiale</h3>
+          <ul class="domaine__liste">
+            <li>Couple</li>
+            <li>Parentalité</li>
+            <li>Fratrie</li>
+            <li>Relation aux autres</li>
+            <li>Sphère sociale</li>
+          </ul>
         </article>
 
-        <article class="carte">
-          <span class="carte__numero" aria-hidden="true">03</span>
-          <h3>Remédiation cognitive</h3>
-          <p>Un traitement de réadaptation visant à améliorer l'attention, la mémoire, le langage et&nbsp;/&nbsp;ou les fonctions exécutives.</p>
-          <a class="carte__lien" href="approches.html#remediation">En savoir plus</a>
+        <article class="domaine">
+          <span class="domaine__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v7"/>
+              <path d="m8.5 5.5 3.5-3.5 3.5 3.5"/>
+              <path d="M3 13h2"/>
+              <path d="M19 13h2"/>
+              <path d="m5.6 8.6 1.4 1.4"/>
+              <path d="m18.4 8.6-1.4 1.4"/>
+              <path d="M8 17a4 4 0 0 1 8 0"/>
+              <path d="M2 21h20"/>
+            </svg>
+          </span>
+          <h3 class="domaine__titre">Épreuves &amp; transitions</h3>
+          <ul class="domaine__liste">
+            <li>Annonce douloureuse</li>
+            <li>Rupture, séparation</li>
+            <li>Changement de vie</li>
+            <li>Perte, deuil</li>
+            <li>Traumatisme</li>
+            <li>Maladie</li>
+          </ul>
+        </article>
+
+        <article class="domaine">
+          <span class="domaine__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </span>
+          <h3 class="domaine__titre">Rapport à soi</h3>
+          <ul class="domaine__liste">
+            <li>Rapport au corps</li>
+            <li>Handicap</li>
+            <li>Estime de soi</li>
+            <li>Gestion des émotions</li>
+          </ul>
         </article>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ Le cabinet ============ -->
-  <section class="section section--beige">
-    <div class="conteneur duo duo--inverse reveal">
-      <div>
-        <div class="section-titre">
-          <span class="surtitre">Le cabinet</span>
-          <h2>Cabinet des 3 fontaines</h2>
-          <span class="filet"></span>
-        </div>
-        <address class="adresse">
-          5 ter avenue des 3 fontaines<br>
-          74600 ANNECY
-        </address>
-        <p style="margin-top:1.25rem">Arrêt bus 3 Fontaines (lignes 4 ou 27) ou Loverchy cité, ligne 4.</p>
-        <div class="groupe-btn">
-          <a class="btn btn--secondaire" href="cabinet.html">Accès et informations pratiques</a>
-        </div>
-      </div>
-      <div class="duo__media">
-        <img src="assets/cabinet.jpg" width="960" height="720" loading="lazy"
-             alt="Intérieur du cabinet des 3 fontaines à Annecy : espace lumineux et apaisant, fauteuil et chaise autour d'un tapis clair">
+      <div class="consequences">
+        <p class="consequences__intro">Ces difficultés peuvent être source, notamment, de&nbsp;:</p>
+        <ul class="consequences__liste">
+          <li>Fatigabilité</li>
+          <li>Stress</li>
+          <li>Anxiété</li>
+          <li>Souffrance</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <!-- ============ CTA final ============ -->
-  <section class="section section--blanc">
+  <section class="section section--beige">
     <div class="conteneur reveal">
       <div class="doctolib">
         <div>
@@ -223,7 +266,6 @@
         <ul class="footer__liste">
           <li><a href="index.html">Accueil</a></li>
           <li><a href="approches.html">Mes approches</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
           <li><a href="cabinet.html">Le cabinet</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

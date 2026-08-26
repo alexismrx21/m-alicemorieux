@@ -30,7 +30,7 @@
   /* Rythme */
   --largeur-max: 1180px;
   --largeur-texte: 68ch;
-  --section-y: clamp(3.5rem, 8vw, 6.5rem);
+  --section-y: clamp(2.75rem, 5.5vw, 4.5rem);
   --gouttiere: clamp(1.25rem, 5vw, 2.5rem);
 
   /* Formes */
@@ -217,7 +217,7 @@ strong {
 
 /* En-tête de section */
 .section-titre {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .section-titre--centre {
@@ -526,7 +526,7 @@ strong {
   background: var(--vert-profond);
   color: var(--blanc);
   overflow: hidden;
-  padding-block: clamp(3.5rem, 8vw, 6rem);
+  padding-block: clamp(3rem, 6vw, 4.75rem);
 }
 
 .hero::before {
@@ -575,6 +575,7 @@ strong {
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.92);
   max-width: 32ch;
+  text-align: justify;
 }
 
 .hero__portrait {
@@ -595,7 +596,7 @@ strong {
 
 /* Hero simplifié des pages intérieures */
 .hero--page {
-  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  padding-block: clamp(2.25rem, 4.5vw, 3.5rem);
   text-align: center;
 }
 
@@ -718,6 +719,10 @@ strong {
 
 .duo-texte p:last-child {
   margin-bottom: 0;
+}
+
+.duo-texte p {
+  text-align: justify;
 }
 
 @media (max-width: 860px) {
@@ -989,15 +994,13 @@ strong {
   text-transform: uppercase;
 }
 
-/* Les trois approches, côte à côte, texte complet visible d'emblée */
-.grille--approches {
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-}
-
 .carte--approche h2 {
   font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.55rem);
   margin: 0 0 0.6em;
+}
+
+.carte--approche p {
+  text-align: justify;
 }
 
 /* cartes de lecture, pas de survol qui laisserait croire à un lien */
@@ -1006,10 +1009,246 @@ strong {
   box-shadow: var(--ombre);
 }
 
-/* en dessous de trois colonnes lisibles, on empile */
-@media (max-width: 900px) {
-  .grille--approches {
-    grid-template-columns: 1fr;
+/* --------------------------------------------------------------------------
+   Carrousel des approches
+   Sans JavaScript, les cartes restent simplement empilées : la classe
+   .is-actif n'est posée qu'une fois le script chargé.
+   -------------------------------------------------------------------------- */
+
+.carrousel {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* repli sans JS : les trois cartes l'une sous l'autre */
+.carrousel:not(.is-actif) .carrousel__piste {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.carrousel.is-actif {
+  padding: 0 clamp(0px, 4vw, 72px);
+}
+
+.carrousel__cadre {
+  overflow: hidden;
+}
+
+/* Le débord vertical laisse respirer les ombres portées, la marge négative
+   annule la place qu'il prendrait ; le dégradé adoucit la coupe des cartes
+   entrevues sur les côtés. */
+.carrousel.is-actif .carrousel__cadre {
+  padding: 32px 0;
+  margin: -32px 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+
+/* Les cartes sont superposées dans une même case de grille : la plus haute
+   impose sa hauteur aux autres, elles ont donc toutes le même format. */
+.carrousel.is-actif .carrousel__piste {
+  display: grid;
+  perspective: 1600px;
+}
+
+.carrousel.is-actif .carrousel__slide {
+  grid-area: 1 / 1;
+  justify-self: center;
+  width: min(100%, 620px);
+  /* état par défaut : hors du champ (cas d'un carrousel de plus de 3 cartes) */
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 520ms cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+}
+
+/* carte affichée */
+.carrousel.is-actif .carrousel__slide[data-position="0"] {
+  z-index: 3;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* cartes entrevues de part et d'autre, un clic les ramène au centre */
+.carrousel.is-actif .carrousel__slide[data-position="-1"],
+.carrousel.is-actif .carrousel__slide[data-position="1"] {
+  z-index: 2;
+  opacity: 0.5;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.carrousel.is-actif .carrousel__slide[data-position="-1"] {
+  transform: translateX(-72%) scale(0.86) rotateY(14deg);
+}
+
+.carrousel.is-actif .carrousel__slide[data-position="1"] {
+  transform: translateX(72%) scale(0.86) rotateY(-14deg);
+}
+
+/* Flèches */
+.carrousel__fleche {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--vert-clair);
+  border-radius: 50%;
+  background: var(--blanc);
+  color: var(--vert-profond);
+  box-shadow: var(--ombre);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.carrousel__fleche:hover {
+  background: var(--vert-profond);
+  border-color: var(--vert-profond);
+  color: var(--blanc);
+}
+
+.carrousel__fleche svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* sur grand écran, les flèches encadrent la carte */
+@media (min-width: 861px) {
+  .carrousel__fleche {
+    position: absolute;
+    top: 0;
+    bottom: 84px;
+    margin: auto 0;
+  }
+
+  .carrousel__fleche--prec {
+    left: 0;
+  }
+
+  .carrousel__fleche--suiv {
+    right: 0;
+  }
+}
+
+/* Barre de commandes : points + lecture/pause */
+.carrousel__barre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.carrousel__points {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.carrousel__point {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vert-clair);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.carrousel__point:hover {
+  background: var(--vert-taupe);
+}
+
+.carrousel__point[aria-current="true"] {
+  background: var(--vert-profond);
+  transform: scale(1.3);
+}
+
+.carrousel__lecture {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--vert-clair);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--vert-profond);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+
+.carrousel__lecture:hover {
+  background: var(--vert-profond);
+  border-color: var(--vert-profond);
+  color: var(--blanc);
+}
+
+.carrousel__lecture svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* sur mobile, les flèches rejoignent la barre de commandes */
+@media (max-width: 860px) {
+  .carrousel__barre {
+    gap: 0.85rem;
+  }
+
+  .carrousel__fleche {
+    width: 42px;
+    height: 42px;
+    order: -1;
+  }
+
+  .carrousel__fleche--suiv {
+    order: 1;
+  }
+
+  /* les flèches sont passées sous la carte : plus besoin de marge latérale,
+     on rend la largeur au texte et les voisines ne dépassent que d'un liseré */
+  .carrousel.is-actif {
+    padding: 0;
+  }
+
+  .carrousel.is-actif .carrousel__slide {
+    width: 88%;
+  }
+
+  .carrousel.is-actif .carrousel__slide[data-position="-1"] {
+    transform: translateX(-88%) scale(0.9) rotateY(10deg);
+  }
+
+  .carrousel.is-actif .carrousel__slide[data-position="1"] {
+    transform: translateX(88%) scale(0.9) rotateY(-10deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrousel.is-actif .carrousel__slide {
+    transition: none;
   }
 }
 
@@ -1328,7 +1567,7 @@ strong {
 .site-footer {
   background: var(--vert-profond);
   color: rgba(255, 255, 255, 0.82);
-  padding-block: clamp(2.75rem, 6vw, 4rem) 1.75rem;
+  padding-block: clamp(2.25rem, 4.5vw, 3.25rem) 1.75rem;
   font-size: 0.95rem;
 }
 

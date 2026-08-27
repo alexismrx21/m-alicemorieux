@@ -1291,6 +1291,11 @@ strong {
   margin-top: 0;
 }
 
+.texte-legal h3 {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  margin-top: 1.75rem;
+}
+
 /* --------------------------------------------------------------------------
    8. Cabinet & contact
    -------------------------------------------------------------------------- */
@@ -1583,8 +1588,9 @@ strong {
 
 .footer__grille {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: 1fr 1.25fr 1.15fr 0.85fr 1.25fr;
+  column-gap: 1.75rem;
+  row-gap: 2.5rem;
   padding-bottom: 2.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -1593,10 +1599,11 @@ strong {
   font-family: var(--font-corps);
   font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--vert-clair);
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .footer__nom {
@@ -1628,6 +1635,29 @@ strong {
   padding-top: 1.5rem;
   font-size: 0.87rem;
   color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 860px) {
+  .footer__grille {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1.75rem;
+    row-gap: 2.25rem;
+  }
+
+  .footer__titre {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer__grille {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
+
+  .footer__bas {
+    justify-content: flex-start;
+  }
 }
 
 /* --------------------------------------------------------------------------

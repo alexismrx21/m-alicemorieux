@@ -1351,11 +1351,77 @@ strong {
   overflow: hidden;
 }
 
-.carte-embed iframe {
+.carte-embed {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.carte-embed img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
   display: block;
+}
+
+/* Repère du cabinet : la pointe du marqueur vise le centre exact de l'image,
+   qui correspond au 5 ter avenue des Trois Fontaines. */
+.carte-embed__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+.carte-embed__pin svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 3px 5px rgba(46, 51, 44, 0.35));
+}
+
+.carte-embed__pin path {
+  fill: var(--vert-profond);
+  stroke: var(--blanc);
+  stroke-width: 1.2;
+}
+
+.carte-embed__pin circle {
+  fill: var(--blanc);
+}
+
+.carte-embed__cta {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: 999px;
+  background: var(--blanc);
+  color: var(--vert-profond);
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: var(--ombre);
+  transition: background var(--transition), color var(--transition);
+}
+
+.carte-embed__cta::after {
+  content: " ↗";
+}
+
+.carte-embed:hover .carte-embed__cta,
+.carte-embed:focus-visible .carte-embed__cta {
+  background: var(--vert-profond);
+  color: var(--blanc);
+}
+
+.carte-embed__credit {
+  max-width: 640px;
+  margin: 0.9rem auto 0;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--texte-doux);
 }
 
 /* Moyens de contact */

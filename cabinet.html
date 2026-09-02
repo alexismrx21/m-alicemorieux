@@ -15,10 +15,9 @@
   <meta property="og:image" content="https://www.morieux-psychologue.com/assets/cabinet-vue.jpg">
   <meta property="og:url" content="https://www.morieux-psychologue.com/cabinet.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/styles.css">
   <noscript>
     <style>
@@ -113,14 +112,24 @@
           <span class="filet"></span>
         </div>
 
-        <div class="carte-embed">
-          <iframe title="Carte Google Maps du cabinet des 3 fontaines, 5 ter avenue des 3 fontaines à Annecy"
-            src="https://maps.google.com/maps?q=5ter%20avenue%20des%203%20fontaines%2C%2074600%20Annecy&amp;ll=45.8914,6.1162&amp;z=16&amp;hl=fr&amp;output=embed"
-            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <p style="text-align:center;margin-top:1rem;font-size:0.9rem;color:var(--texte-doux);max-width:none">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=5ter+avenue+des+3+fontaines+74600+Annecy"
-            target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        <a class="carte-embed"
+          href="https://www.google.com/maps/search/?api=1&amp;query=5ter+avenue+des+3+fontaines+74600+Annecy"
+          target="_blank" rel="noopener">
+          <img src="assets/plan-cabinet.jpg" width="1104" height="828" loading="lazy"
+            alt="Plan du quartier des Trois Fontaines à Annecy : le cabinet se trouve avenue des Trois Fontaines, entre le rond-point des Trois Fontaines et la rue des Jardins.">
+          <span class="carte-embed__pin" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <span class="carte-embed__cta">Voir sur Google Maps</span>
+        </a>
+
+        <p class="carte-embed__credit">
+          Fond de plan&nbsp;: ©&nbsp;<a href="https://www.openstreetmap.org/copyright" target="_blank"
+            rel="noopener">les contributeurs OpenStreetMap</a>, sous licence ODbL. Ce plan est une simple
+          image&nbsp;: aucune connexion n'est établie avec un service tiers tant que vous ne cliquez pas.
         </p>
       </div>
     </section>

@@ -8,9 +8,9 @@
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://www.morieux-psychologue.com/politique-des-cookies.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/styles.css">
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
@@ -81,46 +81,25 @@
         publicitaire.</strong> Il n'y a ni Google Analytics, ni outil statistique équivalent,
         ni régie publicitaire, ni bouton de réseau social, ni pixel de suivi.</p>
 
-      <h3>Contenus tiers pouvant déposer des traceurs</h3>
+      <h3>Aucun contenu tiers n'est chargé</h3>
 
-      <p>Deux services extérieurs sont sollicités par les pages du site.</p>
+      <p>Toutes les ressources nécessaires à l'affichage des pages — feuilles de style,
+        polices de caractères, images et scripts — sont servies depuis ce site. Aucune requête
+        n'est adressée à un serveur extérieur pendant votre navigation&nbsp;:</p>
 
       <ul>
-        <li><strong>Google Maps — page «&nbsp;<a href="cabinet.html">Le cabinet</a>&nbsp;»
-          uniquement.</strong> La carte permettant de situer le cabinet est une carte Google
-          intégrée. Son affichage établit une connexion avec les serveurs de Google, qui
-          reçoivent votre adresse IP et sont susceptibles de déposer des cookies ou d'écrire
-          dans le stockage local de votre navigateur, selon des modalités qui relèvent de
-          Google. Ces traceurs ne sont pas déposés par ce site et ne lui sont pas accessibles.
-          Les autres pages du site n'affichent pas de carte et ne déclenchent aucune connexion
-          de ce type.</li>
-        <li><strong>Google Fonts — toutes les pages.</strong> Les polices de caractères du site
-          (Fraunces et Inter) sont chargées depuis les serveurs de Google. Ce chargement ne
-          dépose pas de cookie, mais transmet votre adresse IP à Google, qui la traite à des
-          fins techniques de délivrance des fichiers.</li>
+        <li>les polices Fraunces et Inter sont <strong>hébergées sur ce site</strong> et non
+          chargées depuis Google Fonts&nbsp;;</li>
+        <li>le plan de la page «&nbsp;<a href="cabinet.html">Le cabinet</a>&nbsp;» est une
+          <strong>simple image</strong>, et non une carte interactive intégrée&nbsp;: aucune
+          connexion n'est établie avec Google Maps tant que vous ne cliquez pas dessus&nbsp;;</li>
+        <li>il n'y a ni vidéo intégrée, ni bouton de réseau social, ni widget d'avis, ni police
+          ou bibliothèque chargée depuis un CDN.</li>
       </ul>
 
-      <p>Les pratiques de Google en matière de données sont décrites dans ses
-        <a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener">règles
-        de confidentialité</a>.</p>
-
-      <div class="encadre a-completer">
-        <p class="encadre__titre">[À ARBITRER avant mise en ligne — carte Google Maps]</p>
-        <p>La carte intégrée sur la page «&nbsp;Le cabinet&nbsp;» est un contenu tiers
-          susceptible de déposer des traceurs non exemptés de consentement. Trois options,
-          par ordre de simplicité&nbsp;:</p>
-        <p><strong>1.</strong> Remplacer la carte par une image statique du plan accompagnée
-          d'un lien «&nbsp;Ouvrir dans Google Maps&nbsp;» — aucun traceur, aucun bandeau
-          nécessaire, et c'est l'option retenue par défaut dans le texte ci-dessus si la carte
-          est retirée.<br>
-          <strong>2.</strong> Mettre en place un chargement à la demande&nbsp;: la carte
-          n'apparaît qu'après un clic explicite du visiteur, précédé d'une mention
-          d'information.<br>
-          <strong>3.</strong> Conserver la carte telle quelle et déployer un bandeau de
-          consentement conforme, bloquant l'iframe tant que le visiteur n'a pas accepté.</p>
-        <p>Tant que l'une de ces options n'est pas mise en œuvre, ce paragraphe doit rester
-          visible et le bloc «&nbsp;Google Maps&nbsp;» ci-dessus ne doit pas être supprimé.</p>
-      </div>
+      <p>Les liens vers Doctolib et Google Maps sont de simples liens&nbsp;: ils n'ont aucun
+        effet tant que vous ne les activez pas, et vous quittez alors ce site pour le service
+        concerné, qui applique ses propres règles.</p>
 
       <h3>Si un outil de mesure d'audience est ajouté plus tard</h3>
 
@@ -138,8 +117,9 @@
         du service expressément demandé&nbsp;: cookies de session, de panier, d'équilibrage de
         charge, ou mémorisation d'un choix de consentement.</p>
 
-      <p>Ce site ne déposant aucun cookie qui lui soit propre, <strong>aucun bandeau de
-        consentement n'est affiché</strong>&nbsp;: il n'y aurait rien à accepter ni à refuser.</p>
+      <p>Ce site ne déposant aucun cookie — ni pour son propre compte, ni pour celui d'un
+        tiers —, <strong>aucun bandeau de consentement n'est affiché</strong>&nbsp;: il n'y
+        aurait rien à accepter ni à refuser.</p>
 
       <p>En revanche, tout ajout futur d'un outil de mesure d'audience non exempté, d'un
         contenu tiers embarqué ou d'un traceur publicitaire imposerait la mise en place d'un
@@ -153,10 +133,6 @@
         de vie n'excéderait pas celle de la session de navigation, et un éventuel choix de
         consentement serait conservé au maximum 6&nbsp;mois, conformément à la recommandation
         de la CNIL.</p>
-
-      <p>Les traceurs éventuellement déposés par Google lors de l'affichage de la carte
-        relèvent des durées définies par Google, indiquées dans ses propres règles de
-        confidentialité.</p>
 
       <h2>Gérer les cookies depuis votre navigateur</h2>
 

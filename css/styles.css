@@ -1282,6 +1282,32 @@ strong {
 }
 
 /* Page de texte long (mentions légales) */
+.texte-legal__maj {
+  font-size: 0.9rem;
+  color: var(--texte-doux);
+  margin-bottom: 2rem;
+}
+
+/* Repère visuel des informations restant à renseigner avant mise en ligne.
+   Supprimer la classe (et cette règle) une fois toutes les pages complétées. */
+.a-completer {
+  background: rgba(214, 158, 46, 0.3);
+  box-shadow: inset 0 -2px 0 rgba(166, 116, 20, 0.65);
+  border-radius: 3px;
+  padding: 0 0.15em;
+}
+
+.encadre.a-completer {
+  background: rgba(214, 158, 46, 0.14);
+  border-left-color: rgb(191, 138, 26);
+  box-shadow: var(--ombre);
+  padding: 1.5rem 1.75rem;
+}
+
+.texte-legal .encadre {
+  margin: 1.75rem 0 2rem;
+}
+
 .texte-legal h2 {
   font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.5rem);
   margin-top: 2.75rem;

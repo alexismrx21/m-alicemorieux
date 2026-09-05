@@ -995,12 +995,25 @@ strong {
 }
 
 .carte--approche h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.55rem);
   margin: 0 0 0.6em;
 }
 
+/* icône du titre : dimensionnée en em, elle suit la taille du titre */
+.approche__icone {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+  color: var(--vert-taupe-fonce);
+}
+
 .carte--approche p {
-  text-align: justify;
+  /* pas de justification : sans césure automatique, le web étire les espaces
+     entre les mots et creuse des « rivières » blanches dans le paragraphe */
+  text-align: left;
 }
 
 /* cartes de lecture, pas de survol qui laisserait croire à un lien */

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.morieux-psychologue.fr/sitemap.xml
+Sitemap: https://morieux-psychologue.fr/sitemap.xml

@@ -1,10 +1,80 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["cdg1"],
+  "regions": [
+    "cdg1"
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cabinet.html",
+      "destination": "/cabinet",
+      "statusCode": 301
+    },
+    {
+      "source": "/approches.html",
+      "destination": "/approches",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/mentions-legales.html",
+      "destination": "/mentions-legales",
+      "statusCode": 301
+    },
+    {
+      "source": "/politique-de-confidentialite.html",
+      "destination": "/politique-de-confidentialite",
+      "statusCode": 301
+    },
+    {
+      "source": "/politique-des-cookies.html",
+      "destination": "/politique-des-cookies",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/cabinet",
+      "destination": "/cabinet.html"
+    },
+    {
+      "source": "/approches",
+      "destination": "/approches.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
+      "source": "/politique-de-confidentialite",
+      "destination": "/politique-de-confidentialite.html"
+    },
+    {
+      "source": "/politique-des-cookies",
+      "destination": "/politique-des-cookies.html"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
     }
   ]
 }

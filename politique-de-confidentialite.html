@@ -144,33 +144,6 @@
           vous répondre, et vous pouvez à tout moment demander leur effacement (voir la
           section&nbsp;7).</p>
 
-        <!-- ==================================================================
-           ⚠️  À VÉRIFIER AVANT MISE EN LIGNE — état réel du formulaire
-
-           Ce texte décrit le formulaire tel qu'il est PRÉVU : envoi via une fonction
-           serverless s'appuyant sur l'API Resend.
-
-           Or, au moment de la rédaction, js/main.js ouvre en réalité le logiciel de
-           messagerie du visiteur via un lien "mailto:" (voir aussi la note affichée sous
-           le formulaire dans contact.html). Dans ce fonctionnement, aucune donnée ne
-           transite par Resend ni par le serveur du site.
-
-           → Si Resend est bien mis en place : supprimer ce commentaire, rien d'autre à
-             changer, et penser à mettre à jour la note sous le formulaire dans
-             contact.html ainsi qu'à y ajouter un lien vers la présente page (information
-             au moment de la collecte, art. 13 RGPD).
-
-           → Si le fonctionnement "mailto:" est conservé : supprimer la puce Resend
-             ci-dessous et la remplacer par le paragraphe suivant, puis adapter la
-             section 9 (aucun message n'est acheminé par un prestataire tiers) :
-
-             <li><strong>Aucun prestataire d'envoi.</strong> Le formulaire ne transmet
-             aucune donnée à ce site : il prépare simplement un message dans votre
-             propre logiciel de messagerie, que vous envoyez vous-même. Votre message
-             emprunte donc uniquement le circuit de votre fournisseur de messagerie et
-             de celui du cabinet.</li>
-           ================================================================== -->
-
         <h2>5. Destinataires et sous-traitants</h2>
 
         <p>Vos données sont destinées à Alice Morieux, seule à en prendre connaissance. Leur
@@ -185,9 +158,9 @@
             de la Commission européenne prévues à son accord de traitement des données (DPA) et
             par le cadre <em>EU-U.S. Data Privacy Framework</em>.</li>
           <li><strong>Vercel Inc.</strong> (États-Unis) — hébergement des fichiers du site et
-            journalisation technique des accès. Société de droit américain&nbsp;; les données du site sont servies
-            depuis la région
-            <span class="a-completer">[À COMPLÉTER : région d'hébergement retenue]</span>. Les
+            journalisation technique des accès. Société de droit américain&nbsp;; la fonction qui traite
+            l'envoi du formulaire s'exécute dans la région <strong>Paris (cdg1)</strong>, tandis que
+            les fichiers du site sont distribués par le réseau de diffusion de Vercel. Les
             transferts hors Union européenne sont encadrés par les clauses contractuelles types
             et par le cadre <em>EU-U.S. Data Privacy Framework</em>.
           </li>

@@ -69,15 +69,19 @@
   }
 
   /* ----- Formulaire de contact -----
-     Site statique, sans serveur : le message est remis au logiciel de
-     messagerie du visiteur via un lien mailto. Aucune donnée ne transite
-     par un service tiers. */
+     Le message part vers /api/contact, une fonction serverless qui relaie
+     l'envoi à Resend. La clé d'API reste côté serveur ; rien de sensible
+     n'apparaît dans ce fichier. */
   var form = document.getElementById("form-contact");
 
   if (form) {
     var DESTINATAIRE = "alice.morieux.psy@gmail.com";
+    var ENDPOINT = "/api/contact";
     var note = document.getElementById("form-note");
-    var noteTexte = note ? note.textContent : "";
+    var bouton = form.querySelector(".formulaire__envoi");
+    var noteHtml = note ? note.innerHTML : "";
+    var libelleBouton = bouton ? bouton.textContent : "Envoyer";
+    var minuteurNote = null;
 
     var messageErreur = function (champ) {
       if (champ.validity.valueMissing) return "Ce champ est obligatoire.";
@@ -86,7 +90,7 @@
     };
 
     var afficherErreur = function (champ, texte) {
-      var bloc = champ.parentNode;
+      var bloc = champ.closest(".champ") || champ.parentNode;
       var existant = bloc.querySelector(".champ__erreur");
 
       if (!texte) {
@@ -104,12 +108,30 @@
       existant.textContent = texte;
     };
 
+    var majNote = function (texte, etat) {
+      if (!note) return;
+      window.clearTimeout(minuteurNote);
+      note.textContent = texte;
+      note.classList.toggle("formulaire__note--succes", etat === "succes");
+      note.classList.toggle("formulaire__note--erreur", etat === "erreur");
+    };
+
+    var reinitialiserNote = function (delai) {
+      if (!note) return;
+      minuteurNote = window.setTimeout(function () {
+        note.innerHTML = noteHtml;
+        note.classList.remove("formulaire__note--succes", "formulaire__note--erreur");
+      }, delai);
+    };
+
     // On efface l'erreur dès que le visiteur corrige sa saisie
-    form.addEventListener("input", function (e) {
-      if (e.target.matches(".champ__saisie") && e.target.checkValidity()) {
-        afficherErreur(e.target, "");
-      }
-    });
+    var corriger = function (e) {
+      var champ = e.target;
+      if (!champ.matches(".champ__saisie")) return;
+      if (champ.checkValidity()) afficherErreur(champ, "");
+    };
+
+    form.addEventListener("input", corriger);
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -128,38 +150,73 @@
         return;
       }
 
-      var nom = form.nom.value.trim();
-      var email = form.email.value.trim();
-      var objet = form.objet.value.trim() || "Demande de contact";
-      var message = form.message.value.trim();
+      var donnees = {
+        nom: form.nom.value.trim(),
+        email: form.email.value.trim(),
+        objet: form.objet.value.trim(),
+        message: form.message.value.trim(),
+        site: form.site ? form.site.value : ""
+      };
 
-      var corps =
-        "Nom : " + nom + "\n" +
-        "E-mail : " + email + "\n\n" +
-        (message || "(aucun message)");
-
-      // un lien cliqué passe mieux que window.location selon les navigateurs
-      var lien = document.createElement("a");
-      lien.href =
-        "mailto:" + DESTINATAIRE +
-        "?subject=" + encodeURIComponent(objet) +
-        "&body=" + encodeURIComponent(corps);
-      lien.style.display = "none";
-      document.body.appendChild(lien);
-      lien.click();
-      document.body.removeChild(lien);
-
-      if (note) {
-        note.textContent =
-          "Votre logiciel de messagerie vient de s'ouvrir avec votre message. " +
-          "S'il ne s'ouvre pas, écrivez directement à " + DESTINATAIRE + ".";
-        note.classList.add("formulaire__note--succes");
-
-        window.setTimeout(function () {
-          note.textContent = noteTexte;
-          note.classList.remove("formulaire__note--succes");
-        }, 12000);
+      if (bouton) {
+        bouton.disabled = true;
+        bouton.textContent = "Envoi en cours…";
       }
+      majNote("Envoi de votre message…", "");
+
+      window
+        .fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(donnees)
+        })
+        .then(function (reponse) {
+          return reponse
+            .json()
+            .catch(function () {
+              return {};
+            })
+            .then(function (corps) {
+              return { ok: reponse.ok, corps: corps };
+            });
+        })
+        .then(function (resultat) {
+          if (!resultat.ok) {
+            var champ = resultat.corps.champ && form.elements[resultat.corps.champ];
+            if (champ) {
+              afficherErreur(champ, resultat.corps.erreur);
+              champ.focus();
+            }
+            majNote(
+              resultat.corps.erreur ||
+                "L'envoi a échoué. Écrivez-moi directement à " + DESTINATAIRE + ".",
+              "erreur"
+            );
+            reinitialiserNote(15000);
+            return;
+          }
+
+          form.reset();
+          majNote(
+            "Merci, votre message a bien été envoyé. Je vous réponds dans les meilleurs délais.",
+            "succes"
+          );
+          reinitialiserNote(20000);
+        })
+        .catch(function () {
+          majNote(
+            "L'envoi a échoué, vérifiez votre connexion. Vous pouvez aussi écrire à " +
+              DESTINATAIRE + ".",
+            "erreur"
+          );
+          reinitialiserNote(15000);
+        })
+        .then(function () {
+          if (bouton) {
+            bouton.disabled = false;
+            bouton.textContent = libelleBouton;
+          }
+        });
     });
   }
 

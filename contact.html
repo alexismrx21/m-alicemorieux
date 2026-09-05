@@ -150,10 +150,16 @@
                     rows="5" placeholder="Rédigez votre message ici..."></textarea>
         </div>
 
+        <!-- Champ leurre : masqué aux visiteurs, les robots le remplissent -->
+        <div class="pot-de-miel" aria-hidden="true">
+          <label for="site">Ne remplissez pas ce champ</label>
+          <input type="text" id="site" name="site" tabindex="-1" autocomplete="off">
+        </div>
+
         <button class="btn btn--clair formulaire__envoi" type="submit">Envoyer</button>
 
         <p class="formulaire__note" id="form-note" role="status">
-          Les champs marqués d'un astérisque sont obligatoires. Votre message ouvrira votre logiciel de messagerie&nbsp;: aucune donnée n'est enregistrée par ce site.
+          Les champs marqués d'un astérisque sont obligatoires. Vos informations servent uniquement à répondre à votre demande&nbsp;; elles ne sont ni revendues, ni utilisées à d'autres fins (voir la <a href="politique-de-confidentialite.html">politique de confidentialité</a>).
         </p>
       </form>
       </div>

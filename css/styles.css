@@ -1645,6 +1645,22 @@ strong {
   border-radius: var(--radius);
 }
 
+/* pendant l'envoi, le bouton reste lisible mais n'accepte plus de clic */
+.formulaire__envoi[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+/* champ leurre anti-robots : hors écran plutôt que display:none,
+   que certains robots savent détecter */
+.pot-de-miel {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .formulaire__note {
   max-width: none;
   margin: 0;
@@ -1655,6 +1671,15 @@ strong {
 .formulaire__note--succes {
   color: var(--blanc);
   font-weight: 600;
+}
+
+.formulaire__note--erreur {
+  color: #ffc9c9;
+  font-weight: 600;
+}
+
+.formulaire__note a {
+  color: inherit;
 }
 
 /* --------------------------------------------------------------------------

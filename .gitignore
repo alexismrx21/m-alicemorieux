@@ -1,0 +1,30 @@
+# Variables d'environnement — ne JAMAIS committer :
+# contiennent la clé d'API Resend (créés notamment par `vercel env pull`)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel
+
+# Dépendances (si un outil en installe un jour)
+node_modules/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Journaux
+*.log
+npm-debug.log*
